@@ -6,7 +6,7 @@
 /*   By: kposthum <kposthum@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/03/22 09:25:39 by kposthum      #+#    #+#                 */
-/*   Updated: 2023/04/19 13:57:57 by kposthum      ########   odam.nl         */
+/*   Updated: 2023/04/23 12:46:11 by kposthum      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,18 +44,13 @@ void	process_first(t_pipex *pipex, char **envp)
 void	write_to_pipe(t_pipex *pipex)
 {
 	char	*buffer;
-	int		rv;
 
-	buffer = ft_calloc(sizeof(char), BUFFER_SIZE);
-	if (!buffer)
-		pipex_error("Memory allocation error\n", pipex->env);
 	while (ft_strncmp(pipex->argv[2], buffer, strlen(pipex->argv[2])) != 0)
 	{
 		write(STDIN_FILENO, "pipex here_doc> ", 16);
-		rv = read(STDOUT_FILENO, buffer, BUFFER_SIZE);
-		if (rv == ERROR)
-			pipex_error("Read error\n", NULL);
-		buffer[rv] = '\0';
+		buffer = get_next_line(STDOUT_FILENO);
+		if (!buffer)
+			pipex_error("Memory allocation error\n", pipex->env);
 		if (strncmp(pipex->argv[2], buffer, strlen(pipex->argv[2])) != 0)
 			write(pipex->fd2[1], buffer, ft_strlen(buffer));
 	}
@@ -66,7 +61,6 @@ void	write_to_pipe(t_pipex *pipex)
 void	process_first_here_doc(t_pipex *pipex, char **envp)
 {
 	char	**args;
-	int		pv;
 
 	close(pipex->fd1[0]);
 	args = NULL;
