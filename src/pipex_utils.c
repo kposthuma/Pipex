@@ -6,7 +6,7 @@
 /*   By: kposthum <kposthum@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/03/19 10:08:32 by kposthum      #+#    #+#                 */
-/*   Updated: 2023/04/06 11:30:47 by kposthum      ########   odam.nl         */
+/*   Updated: 2023/04/25 17:54:48 by kposthum      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ char	**add_slash_to_env(char **env)
 		if (!temp)
 			pipex_error("Memory allocation error", env);
 		free(env[i]);
-		env[i] = strdup(temp);
+		env[i] = ft_strdup(temp);
 		free(temp);
 		if (!env[i])
 			pipex_error("Memory allocation error", env);

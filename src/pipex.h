@@ -6,7 +6,7 @@
 /*   By: kposthum <kposthum@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/03/09 12:58:58 by kposthum      #+#    #+#                 */
-/*   Updated: 2023/04/19 13:59:30 by kposthum      ########   odam.nl         */
+/*   Updated: 2023/04/25 17:56:00 by kposthum      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define PIPEX_H
 
 # include<libft.h>
+# include<fcntl.h>
 # include<stdio.h>
 # include<string.h>
 # include<errno.h>
